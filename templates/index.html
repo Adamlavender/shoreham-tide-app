@@ -1,0 +1,136 @@
+
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block head %}
+<link rel="stylesheet" href="../css/main.css">
+<title>Tide predictor</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class=page>
+    <h2 style="color:white !important">Possible Tide calculator</h2>
+
+    <div class="form">
+      {% block content %}
+      <div class="formwrapper">
+        {% if form.errors %}
+          <ul class="errors">
+            {% for error in form.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        <form method="POST" action="/">
+          {{ form.csrf_token }}
+          <div class="form-row">
+          <div class="form-field form-group">{{ form.earliest_date.label(class_='label') }} {{ form.earliest_date(class_="form-control") }}
+            {% if form.earliest_date.errors %}
+              <ul class="errors">
+                {% for error in form.earliest_date.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+          <div class="form-field form-group">{{ form.latest_date.label }} {{ form.latest_date(class_="form-control") }}
+            {% if form.latest_date.errors %}
+              <ul class="errors">
+                {% for error in form.latest_date.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+          <div class="form-row">
+          <div class="form-field form-group">{{ form.earliest_time.label }} {{ form.earliest_time(class_="form-control")}}
+            {% if form.earliest_time.errors %}
+              <ul class="errors">
+                {% for error in form.earliest_time.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+          <div class="form-field form-group">{{ form.latest_time.label }} {{ form.latest_time(class_="form-control")  }}
+            {% if form.latest_time.errors %}
+              <ul class="errors">
+                {% for error in form.latest_time.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+        
+          <div class="form-row">
+          <div class="form-field form-group">{{ form.min_desired_tide.label }} {{ form.min_desired_tide(class_="form-control")}}
+            {% if form.min_desired_tide.errors %}
+              <ul class="errors">
+                {% for error in form.min_desired_tide.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+          <div class="form-field form-group">{{ form.max_desired_tide.label }} {{ form.max_desired_tide(class_="form-control") }}
+            {% if form.max_desired_tide.errors %}
+              <ul class="errors">
+                {% for error in form.max_desired_tide.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+          <div class="form-row">
+          <div class="form-field form-group">{{ form.day_of_week.label }} {{ form.day_of_week(class_="form-control") }}
+            {% if form.day_of_week.errors %}
+              <ul class="errors">
+                {% for error in form.day_of_week.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+          <div class="form-field form-group">{{ form.window_range.label }} {{ form.window_range(class_="form-control") }}
+            {% if form.window_range.errors %}
+              <ul class="errors">
+                {% for error in form.window_range.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+        <div class="form-field form-check form-check-inline">{{ form.included_tides.label(class_="form-check-label") }} {{ form.included_tides  }}
+          {% if form.included_tides.errors %}
+            <ul class="errors">
+              {% for error in form.included_tides.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+        <div class="form-field form-check form-check-inline">{{ form.download_type.label(class_="form-check-label") }} {{ form.download_type  }}
+          {% if form.download_type.errors %}
+            <ul class="errors">
+              {% for error in form.download_type.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+        <br>
+          {{ form.submit(class_="submit btn") }}
+        </form>
+      </div>
+      {% endblock %}
+
+      
+     
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Task Master</title>
+{% endblock %}
+
+{% block body %}
+
+    
+    <div class= "table-wrapper container">
+        <div class="container" style="margin-top: 5rem;">
+            <h2 style="color:navy">Possible Sailing time</h2>
+        </div>
+        {% for table in tables %}
+        <h2>{{titles[loop.index]}}</h2>
+        {{ table|safe }}
+        {% endfor %}
+
+        {% if "table_view" in download_type %}
+            <a class="btn-download" href="{{ url_for('.download_table') }}"><button class = btn>Download as table view</button> </a>
+        {% endif %}
+
+        {% if "google_cal" in download_type %}
+            <a class="btn-download" href="{{ url_for('.download_cal') }}"><button class = btn>Download as for calendar import</button> </a>
+        {% endif %}
+    </div>
+
+   
+
+{% endblock %}
