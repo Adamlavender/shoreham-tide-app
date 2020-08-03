@@ -1,1 +1,1 @@
-web: gunicorn shorehamtideapp.app:app
+web: gunicorn shoreham-tide-app.app:app
